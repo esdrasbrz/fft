@@ -34,7 +34,23 @@ o FFT consegue realizar o cálculo com $N \log N$ operações \cite{fft-hardware
 
 \section{Diagrama de Blocos}
 
-\section{Descrição Funcional}
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{img/block-diagram.png}
+  \caption{Diagrama de Blocos}
+  \label{fig:diag}
+\end{figure}
+
+Descrição dos Blocos:
+\begin{itemize}
+    \item DAC / Conversor de Áudio: Hardware responsável por coletar o áudio em formato analógico
+    e processar para um sinal digital;
+    \item Central de Processamento (CP): Hardware responsável por escrever na RAM 0 o sinal digital e
+    manipular os índices e prover o fator \tit{twiddle} para o BFU;
+    \item Butterfly Unit (BFU): Hardware responsável por realizar as contas com os índices fornecidos
+    pelo CP e gerar o resultado do FFT iterativamente na RAM 1;
+    \item RAM 0 / 1: Duas unidades de memória com capacidade de leitura e escrita em dois endereços distintos.
+    Capacidade para 32 palavras de memória de 16 bits.
+\end{itemize}
 
 \newpage
 \bibliography{doc}
