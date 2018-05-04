@@ -23,10 +23,20 @@ $x_n$ de amostras no domínio do tempo e retorna o vetor $X_m$ com os coeficient
 das funções senoidais em diferentes frequências. Em outras palavras, o FFT irá 
 transformar um sinal no domínio do tempo para o domínio da frequência.
 
-
+O FFT realiza otimizações no básico DFT (Discrete Fourier Transform) que consiste na seguinte
+transformação linear:
+$$
+    X_m = \sum_{n=0}^{N-1}x_n w^{nm}
+$$
+onde $N$ é o tamanho dos vetores, $w = e^{2i\pi/N}$ são os fatores de rotação (\tit{twiddle}) e
+$0 \leq m < N$. O algoritmo básico do somatório do DFT é feito usando $N^2$ operações, enquanto
+o FFT consegue realizar o cálculo com $N \log N$ operações \cite{fft-hardware}.
 
 \section{Diagrama de Blocos}
 
 \section{Descrição Funcional}
 
+\newpage
+\bibliography{doc}
+\bibliographystyle{ieeetr}
 \end{document}
