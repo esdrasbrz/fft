@@ -18,7 +18,8 @@
 \newpage
 
 \section{Introdução}
-A Transformada de Fourier Rápida (FFT) é um algoritmo que recebe um sinal
+
+		A Transformada de Fourier Rápida (FFT) é um algoritmo que recebe um sinal
 $x_n$ de amostras no domínio do tempo e retorna o vetor $X_m$ com os coeficientes
 das funções senoidais em diferentes frequências. Em outras palavras, o FFT irá 
 transformar um sinal no domínio do tempo para o domínio da frequência.
@@ -29,18 +30,21 @@ $$
     X_m = \sum_{n=0}^{N-1}x_n w^{nm}
 $$
 onde $N$ é o tamanho dos vetores, $w = e^{2i\pi/N}$ são os fatores de rotação (\tit{twiddle}) e
-$0 \leq m < N$. O algoritmo básico do somatório do DFT é feito usando $N^2$ operações, enquanto
-o FFT consegue realizar o cálculo com $N \log N$ operações \cite{fft-hardware}.
+$0 \leq m < N$. 
+
+Uma FFT calcula rapidamente uma sequência dessas transformações fatorizando a matriz DFT em um produto de fatores esparsos. Como resultado, ele consegue reduzir a complexidade de calcular a DFT de  $N^2$ operações, para uma complexidade menor, de $N \log N$ operações \cite{fft-hardware}.
+
+O FFT são de grande importância em uma vasta gama de aplicações, de Processamento digital de sinais para a resolução de equações diferenciais parciais a algoritmos para multiplicação de grandes inteiros.
 
 \section{Diagrama de Blocos}
 
 \begin{figure}[h!]
-  \includegraphics[width=\linewidth]{img/block-diagram.png}
+  \includegraphics[width=\linewidth]{img/img.png}
   \caption{Diagrama de Blocos}
   \label{fig:diag}
 \end{figure}
 
-Descrição dos Blocos:
+Descrição dos Blocos da [Figura 1]:
 \begin{itemize}
     \item DAC / Conversor de Áudio: Hardware responsável por coletar o áudio em formato analógico
     e processar para um sinal digital;
