@@ -27,7 +27,7 @@ end butterfly;
 architecture rtl of butterfly is
 begin
     process (clk, a_re_in, a_im_in, b_re_in, b_im_in, tw_re_in, tw_im_in)
-        constant rounding: integer := 2**(DATA_WIDTH * 2 - 2);
+        --constant rounding: integer := 2**(DATA_WIDTH * 2 - 2);
         variable t1: signed(2*DATA_WIDTH - 1 downto 0);
         variable t2: signed(2*DATA_WIDTH - 1 downto 0);
         variable t3: signed(2*DATA_WIDTH - 1 downto 0);
