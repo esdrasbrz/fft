@@ -19,7 +19,8 @@
 
 \section{Introdução}
 
-		A Transformada de Fourier Rápida (FFT) é um algoritmo que recebe um sinal
+
+   A Transformada de Fourier Rápida (FFT) é um algoritmo que recebe um sinal
 $x_n$ de amostras no domínio do tempo e retorna o vetor $X_m$ com os coeficientes
 das funções senoidais em diferentes frequências. Em outras palavras, o FFT irá 
 transformar um sinal no domínio do tempo para o domínio da frequência.
@@ -36,6 +37,19 @@ Uma FFT calcula rapidamente uma sequência dessas transformações fatorizando a
 
 O FFT são de grande importância em uma vasta gama de aplicações, de Processamento digital de sinais para a resolução de equações diferenciais parciais a algoritmos para multiplicação de grandes inteiros.
 
+\section{Descrição}
+	O sistema irá calcular uma FFT através da utilização de uma \tit{Butterfly Unit} que realiza uma conta para cada par de palavras. Esse processo ocorrerá em 5 iterações e armazenará cada resultado em uma RAM diferente. Depois o resultado será ilustrado através de uma gráfico de barras em um monitor VGA.
+\subsection{Monitor VGA}
+    Hardware responsável por mostrar o resultado do FFT através de um gŕafico de barras.
+\subsection{Central de Processamento (CP)}
+    Hardware responsável por escrever, quando o enable (\tit{we}) for verdadeiro, o resultado da conta feita pelo \tit{Butterfly Unit} no respectivo endereço de memória na RAM correta, sendo dado de escrita (\tit{data\_re\_in/data\_im\_in}) e o dado de leitura(\tit{data\_re\_in/data\_im\_in}) com partes real e imaginária. manipular os índices e prover o fator \tit{twiddle} para o BFU;
+\subsection{Butterfly Unit (BFU)}
+    Hardware responsável por realizar as contas com as palavras fornecidas pelo CP (\tit{a\_re\_in, a\_im\_in, b\_re\_in, b\_im\_in}) e com o fator de rotação , \tit{twiddle} (\tit{tw\_re\_in, tw\_im\_in}) para gerar o resultado (\tit{a\_re\_out, a\_im\_out, b\_re\_out, b\_im\_out}) e enviar para o CP;
+\subsection{RAM (0 to 5)}
+    Unidades de memória com capacidade de leitura e escrita. Cada uma armazena os dados de uma iteração do cálculo e a RAM 0 é a entrada inicial e o resultado estará na RAM 5 depois que o cálculo for feito. Capacidade para 32 palavras de memória de 16 bits.
+
+\newpage
+
 \section{Diagrama de Blocos}
 
 \begin{figure}[h!]
@@ -43,18 +57,6 @@ O FFT são de grande importância em uma vasta gama de aplicações, de Processa
   \caption{Diagrama de Blocos}
   \label{fig:diag}
 \end{figure}
-
-Descrição dos Blocos da [Figura 1]:
-\begin{itemize}
-    \item DAC / Conversor de Áudio: Hardware responsável por coletar o áudio em formato analógico
-    e processar para um sinal digital;
-    \item Central de Processamento (CP): Hardware responsável por escrever na RAM 0 o sinal digital e
-    manipular os índices e prover o fator \tit{twiddle} para o BFU;
-    \item Butterfly Unit (BFU): Hardware responsável por realizar as contas com os índices fornecidos
-    pelo CP e gerar o resultado do FFT iterativamente na RAM 1;
-    \item RAM 0 / 1: Duas unidades de memória com capacidade de leitura e escrita em dois endereços distintos.
-    Capacidade para 32 palavras de memória de 16 bits.
-\end{itemize}
 
 \newpage
 \bibliography{doc}
